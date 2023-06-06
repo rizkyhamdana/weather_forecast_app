@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'config/route/app_route.dart';
+import 'config/services/injection.dart';
 
 void main() {
+  configureDependencies();
   runApp(MyApp());
 }
 
@@ -35,9 +37,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-
     );
   }
 }
-
-

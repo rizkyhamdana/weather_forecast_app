@@ -1,9 +1,15 @@
 class HomeState {
+  final String? error;
+  HomeState({this.error});
   HomeState init() {
     return HomeState();
   }
 
-  HomeState clone() {
+  HomeState loaded() {
     return HomeState();
+  }
+
+  HomeState withError(String e) {
+    return HomeState(error: e);
   }
 }

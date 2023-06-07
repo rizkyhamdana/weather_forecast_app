@@ -31,11 +31,8 @@ class CallApiService {
       }
 
       return response;
-    } on DioException catch (e) {
-      throw DioException(
-        requestOptions: e.requestOptions,
-        error: e,
-      );
+    } on DioException {
+      rethrow;
     } on Exception catch (e) {
       throw Exception(e);
     }

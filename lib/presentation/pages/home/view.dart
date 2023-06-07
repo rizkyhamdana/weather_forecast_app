@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_forecast_app/config/services/injection.dart';
 import 'package:weather_forecast_app/presentation/pages/home/cubit.dart';
+import 'package:weather_forecast_app/presentation/pages/home/state.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -27,11 +29,28 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.red,
         title: const Text('Tesst'),
       ),
-      body: TextButton(
-          onPressed: () {
-            cubit.getCity('Makas');
-          },
-          child: const Text('Test')),
+      body: Column(
+        children: [
+          BlocBuilder<HomeCubit, HomeState>(
+            bloc: cubit,
+            builder: (context, state) {
+              if (state.error != null) {
+                return Text(
+                  state.error!,
+                  style: TextStyle(color: Colors.red),
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
+          TextButton(
+              onPressed: () {
+                cubit.getCity('1sjaksjakjkqjk');
+              },
+              child: const Text('Test')),
+        ],
+      ),
     );
   }
 }

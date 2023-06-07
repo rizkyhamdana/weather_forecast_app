@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_json/pretty_json.dart';
 import 'package:weather_forecast_app/config/util/app_config.dart';
+import 'package:weather_forecast_app/config/util/utility.dart';
 
 class AppInterceptors extends InterceptorsWrapper {
   Response? tempResponse;
@@ -11,10 +12,6 @@ class AppInterceptors extends InterceptorsWrapper {
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    var lang = 'ind';
-
-    options.headers['Accept-Language'] = lang;
-
     return super.onRequest(options, handler);
   }
 
@@ -46,5 +43,27 @@ class AppInterceptors extends InterceptorsWrapper {
         "===============================================",
       );
     }
+  }
+
+  @override
+  Future onError(DioException err, ErrorInterceptorHandler handler) async {
+    if (AppConfig.isDebug) {
+      try {
+        log(
+          "===============================================\n"
+          "URL : ${err.requestOptions.uri}\n"
+          "Headers : ${prettyJson(err.requestOptions.headers)}\n"
+          "REQUEST : ${err.requestOptions.data is FormData ? (err.requestOptions.data as FormData).fields.toList() : prettyJson(err.requestOptions.data ?? err.requestOptions.queryParameters ?? '')}\n"
+          "RESPONSE error : ${err.response is ResponseBody ? (err.response as ResponseBody) : prettyJson(
+              err.response != null ? err.response?.data["message"] ?? '' : '',
+            )}\n"
+          "===============================================",
+        );
+      } catch (e) {
+        e.toString();
+      }
+    }
+
+    handler.reject(err);
   }
 }

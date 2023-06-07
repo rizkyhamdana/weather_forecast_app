@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_json/pretty_json.dart';
 import 'package:weather_forecast_app/config/util/app_config.dart';
-import 'package:weather_forecast_app/config/util/utility.dart';
 
 class AppInterceptors extends InterceptorsWrapper {
   Response? tempResponse;

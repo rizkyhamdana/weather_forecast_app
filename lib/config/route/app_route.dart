@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:weather_forecast_app/presentation/pages/splashscreen/splash_screen_view.dart';
 
 import 'app_route.gr.dart';
 

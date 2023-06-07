@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:weather_forecast_app/config/services/interceptor.dart';
 import 'package:weather_forecast_app/config/util/app_config.dart';

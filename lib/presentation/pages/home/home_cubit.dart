@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:weather_forecast_app/config/services/injection.dart';
 import 'package:weather_forecast_app/config/util/utility.dart';
-import 'package:weather_forecast_app/data/model/city_response.dart';
 import 'package:weather_forecast_app/domain/repository/app_repository.dart';
 
 import 'home_state.dart';

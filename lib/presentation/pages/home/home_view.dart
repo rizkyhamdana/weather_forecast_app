@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_forecast_app/config/services/injection.dart';
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               if (state.error != null) {
                 return Text(
                   state.error!,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 );
               } else {
                 return Container();

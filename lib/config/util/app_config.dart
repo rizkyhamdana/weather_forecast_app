@@ -8,9 +8,10 @@ class AppConfig extends InheritedWidget {
     required Widget child,
   }) : super(child: child);
 
-  static String currentUrl = 'https://openweathermap.org/api';
+  static String currentUrl = 'https://api.openweathermap.org/';
+  static String apiKey = 'bd3df9d559dd5069b0a7ca1a1312e97a';
 
-  static bool isDebug = true;
+  static late bool isDebug;
 
   static Duration connectTimeout = const Duration(seconds: 100);
   static Duration receiveTimeout = const Duration(seconds: 100);

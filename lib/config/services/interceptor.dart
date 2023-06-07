@@ -12,8 +12,8 @@ class AppInterceptors extends InterceptorsWrapper {
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     var lang = 'ind';
+
     options.headers['Accept-Language'] = lang;
-    options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
     return super.onRequest(options, handler);
   }

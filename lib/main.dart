@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:weather_forecast_app/config/util/app_config.dart';
 
 import 'config/route/app_route.dart';
 import 'config/services/injection.dart';
 
 void main() {
   configureDependencies();
+  AppConfig.isDebug = true;
   runApp(MyApp());
 }
 

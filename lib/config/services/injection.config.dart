@@ -19,7 +19,8 @@ import 'package:weather_forecast_app/data/repository/app_repository_impl.dart'
 import 'package:weather_forecast_app/domain/entities/global.dart' as _i7;
 import 'package:weather_forecast_app/domain/repository/app_repository.dart'
     as _i4;
-import 'package:weather_forecast_app/presentation/pages/home/cubit.dart' as _i8;
+import 'package:weather_forecast_app/presentation/pages/home/home_cubit.dart'
+    as _i8;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars

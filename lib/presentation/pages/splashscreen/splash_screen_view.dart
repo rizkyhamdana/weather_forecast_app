@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:weather_forecast_app/config/route/app_route.gr.dart';
 import 'package:weather_forecast_app/config/services/injection.dart';
 import 'package:weather_forecast_app/presentation/pages/home/home_cubit.dart';
@@ -23,20 +24,26 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
+    cubit.getLocation();
   }
 
   Widget bloc() {
     return BlocConsumer<HomeCubit, HomeState>(
       bloc: cubit,
       builder: (context, state) {
+        print('STATE: $state');
+
+        return bodyView();
+      },
+      listener: (context, state) {
         if (state is LocationGet) {
           Timer(const Duration(seconds: 2), () {
             context.router.replace(const HomePage());
           });
+        } else if (state is LocationFailed) {
+          cubit.getLocation();
         }
-        return bodyView();
       },
-      listener: (context, state) {},
     );
   }
 
@@ -53,6 +60,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         color: Colors.amber,
         child: TextButton(
             onPressed: () {
+              print('PRESSED');
               cubit.getLocation();
             },
             child: const Text('Test')),

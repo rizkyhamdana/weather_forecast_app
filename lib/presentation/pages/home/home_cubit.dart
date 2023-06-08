@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:weather_forecast_app/config/services/injection.dart';
+import 'package:weather_forecast_app/config/util/preferences.dart';
 import 'package:weather_forecast_app/config/util/utility.dart';
 import 'package:weather_forecast_app/domain/repository/app_repository.dart';
 
@@ -15,7 +16,6 @@ class HomeCubit extends Cubit<HomeState> {
   void getCity(String city) async {
     try {
       var response = await appRepository.getCity(city);
-
       if (response.isNotEmpty) {
         emit(HomeLoaded(cityResponse: response.first));
       } else {
@@ -26,10 +26,11 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  getLocation() async {
+  void getLocation() async {
     try {
+      print('Masuk SINI tidak?');
       var response = await Utility.getUserLocation();
-
+      print('Response: $response');
       if (response == true) {
         emit(LocationGet());
       } else {

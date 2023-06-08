@@ -4,6 +4,8 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your description for requesting location access</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your description for requesting location access</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

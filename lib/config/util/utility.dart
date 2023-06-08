@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 import 'package:weather_forecast_app/config/util/constant.dart';
+import 'package:weather_forecast_app/config/util/preferences.dart';
 
 class Utility {
   static String handleError(DioException error) {
@@ -73,21 +74,24 @@ class Utility {
       PermissionStatus permissionGranted;
 
       serviceEnabled = await location.serviceEnabled();
+      permissionGranted = await location.hasPermission();
 
       if (!serviceEnabled) {
         serviceEnabled = await location.requestService();
         if (!serviceEnabled) {
-          return true;
+          return false;
         }
       } else {
         permissionGranted = await location.hasPermission();
-        if (permissionGranted == PermissionStatus.denied ||
-            permissionGranted == PermissionStatus.deniedForever) {
+        if (permissionGranted == PermissionStatus.denied) {
           permissionGranted = await location.requestPermission();
+          return false;
         }
         if (permissionGranted == PermissionStatus.granted) {
           try {
-            await Geolocator.getCurrentPosition();
+            var location = await Geolocator.getCurrentPosition();
+            await Prefs.setLat(location.latitude);
+            await Prefs.setLong(location.longitude);
             return true;
           } catch (e) {
             return false;

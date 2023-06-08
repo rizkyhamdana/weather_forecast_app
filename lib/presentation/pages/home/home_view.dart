@@ -31,18 +31,24 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          BlocBuilder<HomeCubit, HomeState>(
+          BlocConsumer<HomeCubit, HomeState>(
             bloc: cubit,
             builder: (context, state) {
-              if (state.error != null) {
+              if (state is HomeError) {
                 return Text(
-                  state.error!,
+                  state.error,
                   style: const TextStyle(color: Colors.red),
+                );
+              } else if (state is HomeEmpty) {
+                return const Text(
+                  'Data Kosong',
+                  style: TextStyle(color: Colors.red),
                 );
               } else {
                 return Container();
               }
             },
+            listener: (context, state) {},
           ),
           TextButton(
               onPressed: () {

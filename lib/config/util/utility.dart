@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 import 'package:weather_forecast_app/config/util/constant.dart';
 
 class Utility {
@@ -59,6 +62,44 @@ class Utility {
       return (message);
     } else {
       return "An error occurred in App";
+    }
+  }
+
+  static Future<bool> getUserLocation() async {
+    try {
+      Location location = Location();
+
+      bool serviceEnabled;
+      PermissionStatus permissionGranted;
+
+      serviceEnabled = await location.serviceEnabled();
+
+      if (!serviceEnabled) {
+        serviceEnabled = await location.requestService();
+        if (!serviceEnabled) {
+          return true;
+        }
+      } else {
+        permissionGranted = await location.hasPermission();
+        if (permissionGranted == PermissionStatus.denied ||
+            permissionGranted == PermissionStatus.deniedForever) {
+          permissionGranted = await location.requestPermission();
+        }
+        if (permissionGranted == PermissionStatus.granted) {
+          try {
+            await Geolocator.getCurrentPosition();
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+      return false;
+    } catch (e) {
+      debugPrint(e.toString());
+      return false;
     }
   }
 }

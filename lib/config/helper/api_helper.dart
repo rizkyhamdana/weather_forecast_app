@@ -13,6 +13,7 @@ class ApiHelper {
     dio = Dio();
     dio.options.baseUrl = AppConfig.currentUrl;
     dio.options.connectTimeout = AppConfig.connectTimeout;
+
     dio.options.receiveTimeout = AppConfig.receiveTimeout;
     dio.options.responseType = ResponseType.json;
     dio.interceptors.add(AppInterceptors());
@@ -27,6 +28,7 @@ class ApiHelper {
   Future<Response<T>> get<T>(String url, Map<String, dynamic> data,
       CancelToken cancelToken, Map<String, dynamic>? extra) {
     dio.options.extra = extra ?? {};
+
     return dio.get(url + apiKey,
         queryParameters: data, cancelToken: cancelToken);
   }

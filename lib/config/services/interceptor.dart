@@ -42,6 +42,15 @@ class AppInterceptors extends InterceptorsWrapper {
         "===============================================",
       );
     }
+
+    if (response.data is Map<String, dynamic> ||
+        response.data is List<dynamic>) {
+      try {
+        return super.onResponse(response, handler);
+      } on DioException catch (e) {
+        handler.reject(e, false);
+      }
+    }
   }
 
   @override

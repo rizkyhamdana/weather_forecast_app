@@ -41,6 +41,10 @@ dependencies:
   get_it: ^7.6.0
   pretty_json: ^2.0.0
   dio: ^5.2.0
+  equatable: ^2.0.5
+  geolocator: ^9.0.2
+  permission_handler: ^10.3.0
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:

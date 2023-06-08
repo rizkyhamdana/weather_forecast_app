@@ -18,13 +18,11 @@ class CallApiService {
 
       var requestPath = path;
 
-      getIt<Global>().cancelToken = CancelToken();
-
       switch (method) {
         case Constant.get:
           response = await apiHelper.get(
               requestPath, data, getIt<Global>().cancelToken, extra);
-          break;
+
         default:
           response = await apiHelper.post(
               requestPath, data, getIt<Global>().cancelToken, extra);

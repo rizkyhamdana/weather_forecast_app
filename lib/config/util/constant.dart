@@ -4,6 +4,7 @@ class Constant {
   static String appName = 'WeatherForecastApp';
 
   static String getCity = 'geo/1.0/direct?';
+  static String getForecast = 'data/2.5/forecast?';
 
   //TYPE REST API
   static const String get = 'GET';

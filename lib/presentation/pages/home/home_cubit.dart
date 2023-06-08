@@ -8,16 +8,35 @@ import 'home_state.dart';
 
 @lazySingleton
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeState().init());
+  HomeCubit() : super(HomeInitial());
 
   var appRepository = getIt<AppRepository>();
 
   void getCity(String city) async {
     try {
-      await appRepository.getCity(city);
-      emit(state.loaded());
+      var response = await appRepository.getCity(city);
+
+      if (response.isNotEmpty) {
+        emit(HomeLoaded(cityResponse: response.first));
+      } else {
+        emit(HomeEmpty());
+      }
     } catch (e) {
-      emit(state.withError(Utility.handleErrorString(e.toString())));
+      emit(HomeError(error: Utility.handleErrorString(e.toString())));
+    }
+  }
+
+  getLocation() async {
+    try {
+      var response = await Utility.getUserLocation();
+
+      if (response == true) {
+        emit(LocationGet());
+      } else {
+        emit(LocationFailed());
+      }
+    } catch (e) {
+      emit(LocationFailed());
     }
   }
 }

@@ -15,13 +15,14 @@ class AppRepositoryImpl implements AppRepository {
   @override
   Future<List<CityResponse>> getCity(String cityName) async {
     try {
-      final response = await callService.connect(
+      var response = await callService.connect(
         Constant.getCity,
         {
           "q": cityName,
         },
         Constant.get,
       );
+
       return cityResponseFromJson(jsonEncode(response.data));
     } on DioException catch (e) {
       throw Exception(Utility.handleError(e));

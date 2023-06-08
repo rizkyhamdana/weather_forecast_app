@@ -26,6 +26,16 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
+  void getForecast(double lat, double long, int days) async {
+    try {
+      var response = await appRepository.getForecast(lat, long, days);
+      emit(HomeForecastLoaded(forecastResponse: response));
+    } catch (e) {
+      print(Utility.handleErrorString(e.toString()));
+      emit(HomeError(error: Utility.handleErrorString(e.toString())));
+    }
+  }
+
   void getLocation() async {
     try {
       print('Masuk SINI tidak?');

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:weather_forecast_app/data/model/city_response.dart';
+import 'package:weather_forecast_app/data/model/city.dart';
+import 'package:weather_forecast_app/data/model/forecast.dart';
 
 @immutable
 class HomeState extends Equatable {
@@ -14,6 +15,11 @@ class HomeInitial extends HomeState {}
 class HomeLoaded extends HomeState {
   final CityResponse cityResponse;
   const HomeLoaded({required this.cityResponse});
+}
+
+class HomeForecastLoaded extends HomeState {
+  final ForecastResponse forecastResponse;
+  const HomeForecastLoaded({required this.forecastResponse});
 }
 
 class HomeError extends HomeState {

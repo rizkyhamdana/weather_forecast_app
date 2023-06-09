@@ -42,6 +42,21 @@ class PreferencesHelper {
     final p = await prefs;
     return p.setDouble(key, value);
   }
+
+  static Future<bool> getBool(String key) async {
+    final p = await prefs;
+    return p.getBool(key) ?? true;
+  }
+
+  static Future<bool?> getBoolNullable(String key) async {
+    final p = await prefs;
+    return p.getBool(key);
+  }
+
+  static Future setBool(String key, bool value) async {
+    final p = await prefs;
+    return p.setBool(key, value);
+  }
 }
 
 class Prefs {
@@ -54,9 +69,16 @@ class Prefs {
 
   static Future setLat(double value) =>
       PreferencesHelper.setDouble(Const.lat, value);
+
+  static Future<bool> get getFistLaunch =>
+      PreferencesHelper.getBool(Const.firstLaunch);
+
+  static Future setFirstLaunch(bool value) =>
+      PreferencesHelper.setBool(Const.firstLaunch, value);
 }
 
 class Const {
   static const String long = 'Longitude';
   static const String lat = 'Latitude';
+  static const String firstLaunch = 'FirstLaunch';
 }

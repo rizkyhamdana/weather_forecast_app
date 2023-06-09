@@ -2,12 +2,9 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:lottie/lottie.dart';
 import 'package:weather_forecast_app/config/route/app_route.gr.dart';
-import 'package:weather_forecast_app/config/services/injection.dart';
-import 'package:weather_forecast_app/presentation/pages/home/home_cubit.dart';
-import 'package:weather_forecast_app/presentation/pages/home/home_state.dart';
+import 'package:weather_forecast_app/config/util/app_theme.dart';
 
 @RoutePage()
 class SplashScreenPage extends StatefulWidget {
@@ -18,38 +15,18 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
-  var cubit = getIt<HomeCubit>();
-  bool isGranted = false;
-
   @override
   void initState() {
     super.initState();
-    cubit.getLocation();
-  }
 
-  Widget bloc() {
-    return BlocConsumer<HomeCubit, HomeState>(
-      bloc: cubit,
-      builder: (context, state) {
-        print('STATE: $state');
-
-        return bodyView();
-      },
-      listener: (context, state) {
-        if (state is LocationGet) {
-          Timer(const Duration(seconds: 2), () {
-            context.router.replace(const HomePage());
-          });
-        } else if (state is LocationFailed) {
-          cubit.getLocation();
-        }
-      },
-    );
+    Timer(const Duration(seconds: 3), () {
+      context.router.replace(const OnboardingPage());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return bloc();
+    return bodyView();
   }
 
   Widget bodyView() {
@@ -57,13 +34,31 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.amber,
-        child: TextButton(
-            onPressed: () {
-              print('PRESSED');
-              cubit.getLocation();
-            },
-            child: const Text('Test')),
+        padding: EdgeInsets.only(
+            top: MediaQuery.of(context).padding.top,
+            bottom: MediaQuery.of(context).padding.bottom + 24),
+        decoration: const BoxDecoration(color: AppTheme.white),
+        child: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                  child: Lottie.asset('assets/anim/anim_oob.json',
+                      width: double.infinity),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                'created by rizkyhamdana',
+                textAlign: TextAlign.center,
+                style: AppTheme.subtitle3(color: AppTheme.blackColor),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

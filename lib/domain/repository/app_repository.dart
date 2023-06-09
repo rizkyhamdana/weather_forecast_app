@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:weather_forecast_app/data/model/city.dart';
 import 'package:weather_forecast_app/data/model/forecast.dart';
 

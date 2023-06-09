@@ -28,7 +28,3 @@ class HomeError extends HomeState {
 }
 
 class HomeEmpty extends HomeState {}
-
-class LocationGet extends HomeState {}
-
-class LocationFailed extends HomeState {}

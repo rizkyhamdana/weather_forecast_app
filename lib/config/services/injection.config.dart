@@ -4,7 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas, duplicate_ignore
+// ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 // coverage:ignore-file
 
@@ -21,6 +21,8 @@ import 'package:weather_forecast_app/domain/repository/app_repository.dart'
     as _i4;
 import 'package:weather_forecast_app/presentation/pages/home/home_cubit.dart'
     as _i8;
+import 'package:weather_forecast_app/presentation/pages/onboarding/onboarding_cubit.dart'
+    as _i9;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -40,5 +42,6 @@ _i1.GetIt init(
   gh.lazySingleton<_i6.CallApiService>(() => _i6.CallApiService());
   gh.lazySingleton<_i7.Global>(() => _i7.Global());
   gh.lazySingleton<_i8.HomeCubit>(() => _i8.HomeCubit());
+  gh.lazySingleton<_i9.OnboardingCubit>(() => _i9.OnboardingCubit());
   return getIt;
 }

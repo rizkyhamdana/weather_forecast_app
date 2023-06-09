@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:weather_forecast_app/config/util/app_config.dart';
 
 import 'config/route/app_route.dart';
@@ -6,8 +7,12 @@ import 'config/services/injection.dart';
 
 void main() {
   configureDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
   AppConfig.isDebug = true;
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -21,6 +26,14 @@ class _MyAppState extends State<MyApp> {
   final _appRouter = AppRouter();
 
   // This widget is the root of your application.
+
+  @override
+  void initState() {
+    super.initState();
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

@@ -12,6 +12,8 @@ class HomeState extends Equatable {
 
 class HomeInitial extends HomeState {}
 
+class HomeLoading extends HomeState {}
+
 class HomeLoaded extends HomeState {
   final CityResponse cityResponse;
   const HomeLoaded({required this.cityResponse});

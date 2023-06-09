@@ -74,13 +74,9 @@ class ListForecast {
   MainClass? main;
   List<Weather>? weather;
   DateTime? dtTxt;
+  Wind? wind;
 
-  ListForecast({
-    this.dt,
-    this.main,
-    this.weather,
-    this.dtTxt,
-  });
+  ListForecast({this.dt, this.main, this.weather, this.dtTxt, this.wind});
 
   factory ListForecast.fromJson(Map<String, dynamic> json) => ListForecast(
         dt: json["dt"],
@@ -88,6 +84,7 @@ class ListForecast {
         weather:
             List<Weather>.from(json["weather"].map((x) => Weather.fromJson(x))),
         dtTxt: DateTime.parse(json["dt_txt"]),
+        wind: Wind.fromJson(json["wind"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -95,6 +92,7 @@ class ListForecast {
         "main": main?.toJson(),
         "weather": List<dynamic>.from(weather!.map((x) => x.toJson())),
         "dt_txt": dtTxt!.toIso8601String(),
+        "wind": wind?.toJson(),
       };
 }
 
@@ -171,5 +169,29 @@ class Weather {
         "main": main,
         "description": description,
         "icon": icon,
+      };
+}
+
+class Wind {
+  double? speed;
+  int? deg;
+  double? gust;
+
+  Wind({
+    this.speed,
+    this.deg,
+    this.gust,
+  });
+
+  factory Wind.fromJson(Map<String, dynamic> json) => Wind(
+        speed: json["speed"]?.toDouble(),
+        deg: json["deg"],
+        gust: json["gust"]?.toDouble(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "speed": speed,
+        "deg": deg,
+        "gust": gust,
       };
 }

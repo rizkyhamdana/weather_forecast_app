@@ -10,7 +10,7 @@ class AppTheme {
   static const Color blue2 = Color(0xFF689FFF);
   static const Color white = Color(0xFFFFFFFF);
 
-  static Gradient customGradient({
+  static Gradient gradient1({
     Alignment begin = Alignment.topLeft,
     Alignment end = Alignment.bottomRight,
     Color startColor = blue1,
@@ -137,6 +137,20 @@ class AppTheme {
         fontFamily: fontName,
         fontWeight: FontWeight.w400,
         fontSize: 14,
+        color: color,
+        decoration: decoration,
+        fontStyle: fontStyle,
+      );
+
+  static TextStyle hintSearch({
+    Color? color = blackColor,
+    TextDecoration? decoration,
+    FontStyle? fontStyle,
+  }) =>
+      TextStyle(
+        fontFamily: fontName,
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
         color: color,
         decoration: decoration,
         fontStyle: fontStyle,

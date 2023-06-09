@@ -31,15 +31,13 @@ class AppRepositoryImpl implements AppRepository {
   }
 
   @override
-  Future<ForecastResponse> getForecast(
-      double lat, double long, int days) async {
+  Future<ForecastResponse> getForecast(double lat, double long) async {
     try {
       var response = await callService.connect(
         Constant.getForecast,
         {
           "lat": lat,
           "lon": long,
-          "cnt": days,
         },
         Constant.get,
       );

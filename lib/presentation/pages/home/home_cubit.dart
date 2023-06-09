@@ -14,9 +14,13 @@ class HomeCubit extends Cubit<HomeState> {
 
   void getCity(String city) async {
     try {
+      emit(HomeLoading());
       var response = await appRepository.getCity(city);
       if (response.isNotEmpty) {
-        emit(HomeLoaded(cityResponse: response.first));
+        var lat = response[0].lat;
+        var lon = response[0].lon;
+        var response2 = await appRepository.getForecast(lat, lon);
+        emit(HomeForecastLoaded(forecastResponse: response2));
       } else {
         emit(HomeEmpty());
       }
@@ -25,9 +29,13 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void getForecast(double lat, double long, int days) async {
+  void getForecast(
+    double lat,
+    double long,
+  ) async {
     try {
-      var response = await appRepository.getForecast(lat, long, days);
+      emit(HomeLoading());
+      var response = await appRepository.getForecast(lat, long);
       emit(HomeForecastLoaded(forecastResponse: response));
     } catch (e) {
       emit(HomeError(error: Utility.handleErrorString(e.toString())));

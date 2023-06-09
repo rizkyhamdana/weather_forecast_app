@@ -22,3 +22,24 @@ class Constant {
   static const String R_SERVICE_UNAVAILABLE = '503';
   static const String R_OTHER_TYPE = 'DioErrorType.other';
 }
+
+class ConstantWeather {
+  static const CLEAR = '01d';
+  static const CLEAR2 = '01n';
+  static const FEWCLOUDS = '02d';
+  static const FEWCLOUDS2 = '02n';
+  static const SCATTEREDCLOUDS = '03d';
+  static const SCATTEREDCLOUDS2 = '03n';
+  static const BROKENCLOUDS = '04d';
+  static const BROKENCLOUDS2 = '04n';
+  static const SHOWERRAIN = '09d';
+  static const SHOWERRAIN2 = '09n';
+  static const RAIN = '10d';
+  static const RAIN2 = '10n';
+  static const THUNDERSTORM = '11d';
+  static const THUNDERSTORM2 = '11n';
+  static const SNOW = '13d';
+  static const SNOW2 = '13n';
+  static const MIST = '50d';
+  static const MIST2 = '50n';
+}

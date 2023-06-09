@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_forecast_app/config/route/app_route.gr.dart';
 import 'package:weather_forecast_app/config/util/app_theme.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_forecast_app/config/util/utility.dart';
@@ -17,6 +18,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   void initState() {
     super.initState();
+
     Utility.getUserLocation();
   }
 
@@ -30,7 +32,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             top: MediaQuery.of(context).padding.top,
             bottom: MediaQuery.of(context).padding.bottom + 24),
         decoration: BoxDecoration(
-          gradient: AppTheme.customGradient(),
+          gradient: AppTheme.gradient1(),
         ),
         child: Column(
           children: [
@@ -70,7 +72,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.router.replace(const HomePage());
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   backgroundColor: AppTheme.white,

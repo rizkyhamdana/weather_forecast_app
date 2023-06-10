@@ -29,12 +29,15 @@
 
 ## Screenshots
 
+### SplashScreen & Onboarding
 [<img src="/readme/ss1.png" align="left"
 width="200"
     hspace="10" vspace="10">](/readme/ss1.png)
 [<img src="/readme/ss2.png" align="center"
 width="200"
     hspace="10" vspace="10">](/readme/ss2.png)
+    
+### Loaded
 [<img src="/readme/ss3.png" align="center"
 width="200"
     hspace="10" vspace="10">](/readme/ss3.png)
@@ -42,7 +45,7 @@ width="200"
 width="200"
     hspace="10" vspace="10">](/readme/ss4.png)
 
-### Error or Empty
+### Error & Empty
 [<img src="/readme/ss5.png" align="left"
 width="200"
     hspace="10" vspace="10">](/readme/ss1.png)
@@ -52,7 +55,7 @@ width="200"
 
 ## Permissions
 
-On Android versions prior to Android 6.0, wallabag requires the following permissions:
+Requires the following permissions:
 - Full Network Access.
 - View Network Connections.
 - Run at startup.

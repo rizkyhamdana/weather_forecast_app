@@ -48,10 +48,10 @@ width="200"
 ### Error & Empty
 [<img src="/readme/ss5.png" align="left"
 width="200"
-    hspace="10" vspace="10">](/readme/ss1.png)
+    hspace="10" vspace="10">](/readme/ss5.png)
 [<img src="/readme/ss6.png" align="center"
 width="200"
-    hspace="10" vspace="10">](/readme/ss2.png)
+    hspace="10" vspace="10">](/readme/ss6.png)
 
 ## Permissions
 

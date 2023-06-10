@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_forecast_app/config/route/app_route.gr.dart';
 import 'package:weather_forecast_app/config/util/app_theme.dart';
+import 'package:weather_forecast_app/config/util/preferences.dart';
 
 @RoutePage()
 class SplashScreenPage extends StatefulWidget {
@@ -18,10 +19,19 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
-
-    Timer(const Duration(seconds: 3), () {
-      context.router.replace(const OnboardingPage());
-    });
+    Prefs.getFistLaunch.then(
+      (value) {
+        if (value) {
+          Timer(const Duration(seconds: 3), () {
+            context.router.replace(const OnboardingPage());
+          });
+        } else {
+          Timer(const Duration(seconds: 3), () {
+            context.router.replace(const HomePage());
+          });
+        }
+      },
+    );
   }
 
   @override

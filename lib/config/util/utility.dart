@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:weather_forecast_app/config/util/constant.dart';
 import 'package:weather_forecast_app/config/util/preferences.dart';
 
@@ -23,7 +23,7 @@ class Utility {
       return "Koneksi timeout saat menerima data dari server";
     }
     if (error.type == DioExceptionType.badResponse) {
-      return 'Bad Response';
+      return 'Bad Response: ${error.error}';
     }
     if (error.type == DioExceptionType.sendTimeout) {
       return "Koneksi timeout saat mengirim ke server";
@@ -125,37 +125,24 @@ class Utility {
 
   static Future<bool> getUserLocation() async {
     try {
-      Location location = Location();
-
-      bool serviceEnabled;
       PermissionStatus permissionGranted;
 
-      serviceEnabled = await location.serviceEnabled();
-      permissionGranted = await location.hasPermission();
+      permissionGranted = await Permission.location.request();
 
-      if (!serviceEnabled) {
-        serviceEnabled = await location.requestService();
-        if (!serviceEnabled) {
+      if (permissionGranted == PermissionStatus.denied ||
+          permissionGranted == PermissionStatus.permanentlyDenied) {
+        permissionGranted = await Permission.location.request();
+        return false;
+      }
+      if (permissionGranted == PermissionStatus.granted) {
+        try {
+          var location = await Geolocator.getCurrentPosition();
+          await Prefs.setLat(location.latitude);
+          await Prefs.setLong(location.longitude);
+          return true;
+        } catch (e) {
           return false;
         }
-      } else {
-        permissionGranted = await location.hasPermission();
-        if (permissionGranted == PermissionStatus.denied) {
-          permissionGranted = await location.requestPermission();
-          return false;
-        }
-        if (permissionGranted == PermissionStatus.granted) {
-          try {
-            var location = await Geolocator.getCurrentPosition();
-            await Prefs.setLat(location.latitude);
-            await Prefs.setLong(location.longitude);
-            return true;
-          } catch (e) {
-            return false;
-          }
-        }
-
-        return true;
       }
       return false;
     } catch (e) {

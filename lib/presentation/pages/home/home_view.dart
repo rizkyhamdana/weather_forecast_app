@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:weather_forecast_app/config/services/injection.dart';
 import 'package:weather_forecast_app/config/util/app_theme.dart';
@@ -179,43 +180,28 @@ class _HomePageState extends State<HomePage> {
     return BlocConsumer<HomeCubit, HomeState>(
       bloc: cubit,
       builder: (context, state) {
-        if (state is HomeLoading) {
-          return bodyViewLoading();
-        }
         if (state is HomeForecastLoaded) {
           forecastResponse = state.forecastResponse;
           return bodyViewLoaded();
-          // return bodyViewLoading();
         }
         if (state is HomeError) {
-          return bodyViewLoading();
+          return bodyViewError(state.error);
         }
 
-        return Container();
+        return bodyViewLoading();
       },
       listener: (context, state) {
         if (state is HomeEmpty) {
+          isCurrentLocation = true;
           AwesomeDialog(
             context: context,
             dialogType: DialogType.warning,
             animType: AnimType.rightSlide,
             title: 'City Not Found',
-            desc: 'We are not found your search...',
-            btnCancelOnPress: () {},
-            btnOkOnPress: () {},
-          ).show();
-
-          cubit.getForecast(lat, lon);
-        }
-        if (state is HomeError) {
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.error,
-            animType: AnimType.rightSlide,
-            title: 'Error',
-            desc: 'Error: ${state.error}',
-            btnCancelOnPress: () {},
-            btnOkOnPress: () {},
+            desc: 'Check again your query...',
+            btnOkOnPress: () {
+              getCurrentLocation().then((value) => cubit.getForecast(lat, lon));
+            },
           ).show();
         }
       },
@@ -755,6 +741,140 @@ class _HomePageState extends State<HomePage> {
             color: AppTheme.blackColor2,
           )
         ],
+      ),
+    );
+  }
+
+  Widget bodyViewError(String error) {
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 120),
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 48.0),
+              child: Lottie.asset(
+                'assets/anim/anim_failed.json',
+                width: double.infinity,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                'Failed To Load',
+                style: AppTheme.subtitle1(),
+              ),
+            ),
+            verticalSpacing(8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                'Error: $error',
+                style: AppTheme.body2(),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+              child: ElevatedButton(
+                onPressed: () {
+                  getCurrentLocation()
+                      .then((value) => cubit.getForecast(lat, lon));
+                },
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  backgroundColor: AppTheme.white,
+                  foregroundColor: AppTheme.blue1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: const BorderSide(
+                          width: 0.1, color: AppTheme.blackColor2)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.refresh),
+                    horizontalSpacing(8),
+                    Text(
+                      'Refresh',
+                      style: AppTheme.subtitle3(color: AppTheme.blue1),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget bodyViewEmpty(String error) {
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 120),
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 48.0),
+              child: Lottie.asset(
+                'assets/anim/anim_failed.json',
+                width: double.infinity,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                'Failed To Load',
+                style: AppTheme.subtitle1(),
+              ),
+            ),
+            verticalSpacing(8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                'Error: $error',
+                style: AppTheme.body2(),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+              child: ElevatedButton(
+                onPressed: () {
+                  getCurrentLocation()
+                      .then((value) => cubit.getForecast(lat, lon));
+                },
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  backgroundColor: AppTheme.white,
+                  foregroundColor: AppTheme.blue1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: const BorderSide(
+                          width: 0.1, color: AppTheme.blackColor2)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.refresh),
+                    horizontalSpacing(8),
+                    Text(
+                      'Refresh',
+                      style: AppTheme.subtitle3(color: AppTheme.blue1),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

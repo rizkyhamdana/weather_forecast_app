@@ -7,24 +7,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:weather_forecast_app/main.dart';
+import 'package:weather_forecast_app/config/services/injection.dart';
+import 'package:weather_forecast_app/presentation/pages/home/home_view.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  setUp(() => configureDependencies());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('Find All Component', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(
+      home: HomePage(),
+    ));
+    expect(find.text('Hello!'), findsOneWidget, reason: 'This is the title');
+    expect(find.byType(TextField), findsOneWidget,
+        reason: 'This is the TextField for Search');
+    expect(find.byType(IconButton), findsOneWidget,
+        reason: 'This is the Button for launch Search');
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    final textFieldFinder = find.byType(TextField);
+    await tester.enterText(textFieldFinder, 'Makassar');
+    expect(find.text('Makassar'), findsOneWidget);
   });
 }

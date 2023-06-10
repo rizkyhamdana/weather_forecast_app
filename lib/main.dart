@@ -7,6 +7,7 @@ import 'config/services/injection.dart';
 
 void main() {
   configureDependencies();
+
   WidgetsFlutterBinding.ensureInitialized();
   AppConfig.isDebug = true;
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])

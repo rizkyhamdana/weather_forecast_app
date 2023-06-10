@@ -772,73 +772,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(
                 'Error: $error',
-                style: AppTheme.body2(),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
-              child: ElevatedButton(
-                onPressed: () {
-                  getCurrentLocation()
-                      .then((value) => cubit.getForecast(lat, lon));
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  backgroundColor: AppTheme.white,
-                  foregroundColor: AppTheme.blue1,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      side: const BorderSide(
-                          width: 0.1, color: AppTheme.blackColor2)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.refresh),
-                    horizontalSpacing(8),
-                    Text(
-                      'Refresh',
-                      style: AppTheme.subtitle3(color: AppTheme.blue1),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget bodyViewEmpty(String error) {
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 120),
-        physics: const NeverScrollableScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 48.0),
-              child: Lottie.asset(
-                'assets/anim/anim_failed.json',
-                width: double.infinity,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                'Failed To Load',
-                style: AppTheme.subtitle1(),
-              ),
-            ),
-            verticalSpacing(8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                'Error: $error',
+                textAlign: TextAlign.center,
                 style: AppTheme.body2(),
               ),
             ),

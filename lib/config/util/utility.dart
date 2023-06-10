@@ -23,7 +23,7 @@ class Utility {
       return "Koneksi timeout saat menerima data dari server";
     }
     if (error.type == DioExceptionType.badResponse) {
-      return 'Bad Response';
+      return 'Bad response\n ${error.message}';
     }
     if (error.type == DioExceptionType.sendTimeout) {
       return "Koneksi timeout saat mengirim ke server";

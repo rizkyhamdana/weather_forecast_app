@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <img src="assets/images/ic_logo_app.png" alt="Logo" width="80" height="80">
+    <img src="assets/images/ic_logo_app.png" alt="Logo" width="80">
   <h3 align="center">Simple Forecast Weather App</h3>
 
   <p align="center">

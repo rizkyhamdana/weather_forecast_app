@@ -21,7 +21,7 @@ class AppRepositoryImpl implements AppRepository {
         {
           "q": cityName,
         },
-        Constant.post,
+        Constant.get,
       );
 
       return cityResponseFromJson(jsonEncode(response.data));

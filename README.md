@@ -26,3 +26,35 @@
    &nbsp;&nbsp;Flutter 3.10.4
 
 
+
+## Screenshots
+
+[<img src="/readme/ss1.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/ss1.png)
+[<img src="/readme/ss2.png" align="center"
+width="200"
+    hspace="10" vspace="10">](/readme/ss2.png)
+[<img src="/readme/ss3.png" align="center"
+width="200"
+    hspace="10" vspace="10">](/readme/ss3.png)
+[<img src="/readme/ss4.png" align="center"
+width="200"
+    hspace="10" vspace="10">](/readme/ss4.png)
+
+### Error or Empty
+[<img src="/readme/ss5.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/ss1.png)
+[<img src="/readme/ss6.png" align="center"
+width="200"
+    hspace="10" vspace="10">](/readme/ss2.png)
+
+## Permissions
+
+On Android versions prior to Android 6.0, wallabag requires the following permissions:
+- Full Network Access.
+- View Network Connections.
+- Run at startup.
+- Acces the Location
+

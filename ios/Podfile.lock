@@ -2,8 +2,6 @@ PODS:
   - Flutter (1.0.0)
   - geolocator_apple (1.2.0):
     - Flutter
-  - location (0.0.1):
-    - Flutter
   - permission_handler_apple (9.1.0):
     - Flutter
   - rive_common (0.0.1):
@@ -15,7 +13,6 @@ PODS:
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
-  - location (from `.symlinks/plugins/location/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - rive_common (from `.symlinks/plugins/rive_common/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -25,8 +22,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
-  location:
-    :path: ".symlinks/plugins/location/ios"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   rive_common:
@@ -37,11 +32,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
-  location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   permission_handler_apple: 8f116445eff3c0e7c65ad60f5fef5490aa94b4e4
   rive_common: 60ae7896ab40f9513974f36f015de33f70d2c5c5
   shared_preferences_foundation: e2dae3258e06f44cc55f49d42024fd8dd03c590c
 
-PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
+PODFILE CHECKSUM: 3094417651e35d80dc3bd60fc9b61e4dc3bde56c
 
 COCOAPODS: 1.12.0

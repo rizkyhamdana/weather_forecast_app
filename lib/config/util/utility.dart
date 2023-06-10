@@ -23,7 +23,7 @@ class Utility {
       return "Koneksi timeout saat menerima data dari server";
     }
     if (error.type == DioExceptionType.badResponse) {
-      return 'Bad Response: ${error.error}';
+      return 'Bad Response';
     }
     if (error.type == DioExceptionType.sendTimeout) {
       return "Koneksi timeout saat mengirim ke server";
@@ -129,8 +129,7 @@ class Utility {
 
       permissionGranted = await Permission.location.request();
 
-      if (permissionGranted == PermissionStatus.denied ||
-          permissionGranted == PermissionStatus.permanentlyDenied) {
+      if (permissionGranted == PermissionStatus.denied) {
         permissionGranted = await Permission.location.request();
         return false;
       }

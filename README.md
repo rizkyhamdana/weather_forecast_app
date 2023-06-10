@@ -5,7 +5,7 @@
   <h3 align="center">Simple Forecast Weather App</h3>
 
   <p align="center">
-    Application that show forecast app with search feature and can show forecast for next 5 days
+    Application that show forecast weather with search feature and can show forecast for next 5 days
   </p>
 </div>
 
